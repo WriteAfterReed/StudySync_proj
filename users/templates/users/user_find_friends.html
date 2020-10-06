@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search for friends in your class!</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="course" placeholder = "class"  value='{{ course }}' required>
+    <input type="submit" value="Submit"/>
+</form>
+
+<h4>Here are the list of people you could join!</h4>
+
+{% if d %}
+{% for key, value in d.items %}
+<h6>{{key}}</h6>
+{% endfor %}
+{% else %}
+<h4>There are no members for that course!</h4>
+{%endif%}
+
+      
+{% endblock %}

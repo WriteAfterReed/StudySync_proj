@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search for available times!</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="course" placeholder = "class"  value='{{ course }}' required>
+
+    <input style="width: 100px; padding-right: 20px;" type="number" name="day" placeholder = "day"  min="1" max="7" value='{{ day }}' required>
+    
+    <input style="width: 100px; padding-right: 20px; "type="number" name="time" placeholder = "time"  min="0" max="23" value='{{ time }}' required>
+    <input style="width: 100px; padding-right: 20px;" type="submit" value="Submit"/>
+</form>
+
+
+{% if d %}
+<h4>That time already has a study group for your course! Times on desired day without a study group: </h4>
+{% for key, value in d.items %}
+    <h6>{{key}}</h6>
+{% endfor %}
+{% else %}
+    <h4>There are no scheduled study groups for your course at that time!</h4>
+{%endif%}
+      
+{% endblock %}

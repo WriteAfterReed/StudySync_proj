@@ -1,0 +1,14 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search Groups by course!</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="query" placeholder = "N/A" value='{{ query }}' required>
+    <input type="submit" value="Submit"/>
+</form>
+      
+{% endblock %}
+

@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-12">
+        <div class="card mb-12 shadow-sm">
+            <div class="card-body">
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'groups:group_new' %}">Create A Group</a></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'users:user_list' %}">View Users</a></button>
+        </div>
+    </div>
+</div>
+
+    {% for group in object_list %}
+
+        <div class="col-md-12">
+            <div class="card mb-12 shadow-sm">
+                <div class="card-body">
+
+                    <h5>{{ group.group_name }}</h5>
+                    <h5 class="card-text"> Group Creator: {{ group.owner_name }} </h5>  
+                    <h5 class="card-text"> Course: {{ group.group_course }}</h5>  
+
+                    <h5 class="card-text"> Group Primary Language: {{ group.group_primary_language}}</h5>  
+                    <h5 class="card-text"> Group Secondary Lanuage: {{ group.group_secondary_language }}</h5>  
+
+					<h5 class="card-text"> Meeting Time: {{ group.meeting_time }}</h5>  
+					<p>24 hour clock.</p>
+					<h5 class="card-text"> Meeting Day: {{ group.meeting_day}}</h5>
+					<p>1 - Monday, 2 - Tuesday, etc.</p> 
+
+                    <h5 class="card-text"> Meeting Location: {{ group.meeting_location}}</h5>  
+
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'groups:group_delete' group.id %}">Delete</a></button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'groups:group_edit' group.id %}">Edit</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    
+{% endblock %}

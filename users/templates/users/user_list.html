@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-12">
+        <div class="card mb-12 shadow-sm">
+            <div class="card-body">
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'users:user_new' %}">Create A User</a></button>
+        </div>
+    </div>
+</div>
+    {% for user in object_list %}
+
+        <div class="col-md-12">
+            <div class="card mb-12 shadow-sm">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'users:user_delete' user.id %}">Delete</a></button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'users:user_edit' user.id %}">Edit</a></button>
+                        </div>
+                    </div>
+
+                    <h5 class="card-text"> Name: {{ user.user_name }} </h5>  
+
+                    <h5 class="card-text"> User Primary Language: {{ user.user_primary_language}}</h5>  
+                    <h5 class="card-text"> User Secondary Lanuage: {{ user.user_secondary_language }}</h5>  
+
+                    <h5 class="card-text"> Preferred Time: {{ user.user_preferred_time }}</h5>  
+                    <p>24 hour clock.</p>
+                    <h5 class="card-text"> Meeting Day: {{ user.user_preferred_day}}</h5>  
+                    <p>1 - Monday, 2 - Tuesday, etc.</p>
+
+                    <h5 class="card-text"> Meeting Location: {{ user.user_preferred_location}}</h5>  
+
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    
+
+{% endblock %}
